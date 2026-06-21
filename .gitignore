@@ -1,0 +1,17 @@
+# 调研缓存
+.firecrawl/
+
+# 构建产物
+build/
+x64/
+Debug/
+Release/
+
+# IDE
+.vs/
+.vscode/
+*.user
+
+# 系统
+Thumbs.db
+.DS_Store
