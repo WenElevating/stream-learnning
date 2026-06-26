@@ -27,6 +27,7 @@ extern "C" {
 #include <cstdio>
 #include <cstring>
 #include <string>
+#include <windows.h>   // SetConsoleOutputCP (修复中文乱码)
 
 // 帧类型转中文 (对应 W3)
 const char* picture_type_char(int pict_type) {
@@ -42,6 +43,9 @@ const char* picture_type_char(int pict_type) {
 }
 
 int main(int argc, char* argv[]) {
+    // 修复 Windows 控制台中文乱码(UTF-8 源 vs GBK 控制台)
+    SetConsoleOutputCP(CP_UTF8);
+
     if (argc < 2) {
         fprintf(stderr, "用法: %s <视频文件> [输出.yuv]\n", argv[0]);
         fprintf(stderr, "示例: %s ..\\labs\\w1_sample.mp4 out.yuv\n", argv[0]);

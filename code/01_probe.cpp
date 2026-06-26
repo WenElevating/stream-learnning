@@ -23,6 +23,7 @@ extern "C" {
 
 #include <cstdio>
 #include <cstring>
+#include <windows.h>   // SetConsoleOutputCP (修复中文乱码)
 
 // 小工具: 把 AVMediaType 枚举转成中文名
 const char* media_type_name(AVMediaType type) {
@@ -46,6 +47,11 @@ const char* pixfmt_name(AVPixelFormat fmt) {
 }
 
 int main(int argc, char* argv[]) {
+    // 修复 Windows 控制台中文乱码
+    // 源文件是 UTF-8, 但 cmd.exe 默认 GBK(代码页936), 不匹配就乱码
+    // SetConsoleOutputCP(65001) 把控制台切到 UTF-8 代码页
+    SetConsoleOutputCP(CP_UTF8);
+
     if (argc < 2) {
         fprintf(stderr, "用法: %s <视频文件>\n", argv[0]);
         fprintf(stderr, "示例: %s ..\\labs\\w1_sample.mp4\n", argv[0]);
