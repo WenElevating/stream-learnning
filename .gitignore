@@ -18,3 +18,10 @@ Release/
 # 系统
 Thumbs.db
 .DS_Store
+nul
+
+# 生产代码 (公司代码, 不进版本库)
+code-ref/
+
+# 临时诊断文件
+code/diag.flv
