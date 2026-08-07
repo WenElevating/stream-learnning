@@ -47,6 +47,10 @@ public:
         return m_codecCtx ? (AVPixelFormat)m_codecCtx->pix_fmt : AV_PIX_FMT_NONE;
     }
 
+    // 暴露内部 codecCtx 给协调器用 (比如 EOF 时需要 send NULL 冲洗解码器).
+    // 这是受控的"逃生舱口", 仅限内部协调逻辑使用.
+    AVCodecContext* codecCtx() { return m_codecCtx; }
+
     void close();
 
 private:
